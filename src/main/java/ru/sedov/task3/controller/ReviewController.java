@@ -6,32 +6,33 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
+import ru.sedov.task3.dto.ReviewDto;
 import ru.sedov.task3.dto.UserDto;
-import ru.sedov.task3.entity.User;
-import ru.sedov.task3.service.UserService;
+import ru.sedov.task3.entity.Review;
+import ru.sedov.task3.service.ReviewService;
 
 import java.util.List;
 
 @RestController
-@RequestMapping("/user")
-public class UserController {
+@RequestMapping("/review")
+public class ReviewController {
 
-    private final UserService service;
+    private final ReviewService service;
 
     @Autowired
-    public UserController(UserService userService) {
-        this.service = userService;
+    public ReviewController(ReviewService service) {
+
+        this.service = service;
     }
 
     @GetMapping("/all")
-    public List<UserDto> getUsers(){
-
-        return service.getUsers();
+    public List<ReviewDto> getAll() {
+        return service.getReviews();
     }
 
     @PostMapping("/save")
-    public UserDto saveUser(@RequestBody UserDto user){
+    public ReviewDto saveReview(@RequestBody ReviewDto review){
 
-        return service.saveUser(user);
+        return service.saveReview(review);
     }
 }

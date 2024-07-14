@@ -16,9 +16,8 @@ import org.springframework.transaction.annotation.EnableTransactionManagement;
 import javax.sql.DataSource;
 import java.util.Properties;
 
-
 @Configuration
-@EnableJpaRepositories("ru/sedov/task3/repository")
+@EnableJpaRepositories("ru.sedov.task3.repository")
 @EnableTransactionManagement
 @PropertySource({"classpath:database.properties", "classpath:hibernate.properties"})
 public class DatabaseConfig {
@@ -40,7 +39,7 @@ public class DatabaseConfig {
     }
 
     @Bean
-    public LocalContainerEntityManagerFactoryBean entityManagerFactoryBean(){
+    public LocalContainerEntityManagerFactoryBean entityManagerFactory(){
 
         HibernateJpaVendorAdapter adapter = new HibernateJpaVendorAdapter();
         adapter.setGenerateDdl(true);
@@ -63,10 +62,9 @@ public class DatabaseConfig {
     public PlatformTransactionManager transactionManager(){
 
         JpaTransactionManager transactionManager = new JpaTransactionManager();
-        transactionManager.setEntityManagerFactory(entityManagerFactoryBean().getObject());
+        transactionManager.setEntityManagerFactory(entityManagerFactory().getObject());
         return transactionManager;
     }
-
 }
 
 

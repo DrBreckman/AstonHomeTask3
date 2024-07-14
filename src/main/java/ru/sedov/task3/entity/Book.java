@@ -6,8 +6,6 @@ import jakarta.persistence.FetchType;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
-import jakarta.persistence.JoinColumn;
-import jakarta.persistence.JoinTable;
 import jakarta.persistence.ManyToMany;
 import jakarta.persistence.OneToMany;
 import jakarta.persistence.Table;
@@ -16,34 +14,31 @@ import java.util.Set;
 import java.util.UUID;
 
 @Entity
-@Table(name = "users")
-public class User {
+@Table(name = "books")
+public class Book {
+
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
     private String name;
-    private Integer age;
-    private String address;
+    private String author;
 
-    @OneToMany(fetch = FetchType.EAGER, mappedBy = "user", cascade = CascadeType.ALL)
+    @OneToMany(fetch = FetchType.EAGER, mappedBy = "book", cascade = CascadeType.ALL)
     private Set<Review> reviewSet;
 
     @ManyToMany(fetch = FetchType.EAGER,
-                cascade = CascadeType.ALL)
-    @JoinTable(name = "users_books",
-               joinColumns = { @JoinColumn(name = "user_id") },
-               inverseJoinColumns = { @JoinColumn(name = "book_id") })
-    private Set<Book> readingBooks;
+                cascade = CascadeType.ALL,
+                mappedBy = "readingBooks")
+    private Set<User> readingUsers;
 
-    public User(){
+    public Book() {
 
     }
 
-    public User(String name, Integer age, String address) {
+    public Book(String name, String author) {
 
         this.name = name;
-        this.age = age;
-        this.address = address;
+        this.author = author;
     }
 
     public Long getId() {
@@ -66,24 +61,14 @@ public class User {
         this.name = name;
     }
 
-    public Integer getAge() {
+    public String getAuthor() {
 
-        return age;
+        return author;
     }
 
-    public void setAge(Integer age) {
+    public void setAuthor(String author) {
 
-        this.age = age;
-    }
-
-    public String getAddress() {
-
-        return address;
-    }
-
-    public void setAddress(String address) {
-
-        this.address = address;
+        this.author = author;
     }
 
     public Set<Review> getReviewSet() {
@@ -96,13 +81,13 @@ public class User {
         this.reviewSet = reviewSet;
     }
 
-    public Set<Book> getReadingBooks() {
+    public Set<User> getReadingUsers() {
 
-        return readingBooks;
+        return readingUsers;
     }
 
-    public void setReadingBooks(Set<Book> readingBooks) {
+    public void setReadingUsers(Set<User> readingUsers) {
 
-        this.readingBooks = readingBooks;
+        this.readingUsers = readingUsers;
     }
 }
