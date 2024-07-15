@@ -61,6 +61,7 @@ public class BookControllerTest extends TestCase {
             .andExpect(jsonPath("$").hasJsonPath())
             .andExpect(result -> assertEquals(result.getResponse().getContentAsString(),
                 mapper.writeValueAsString(books)));
+        assertTrue(books.get(0).getReaderSet().isEmpty());
 
         verify(bookService, times(1)).getAll();
     }

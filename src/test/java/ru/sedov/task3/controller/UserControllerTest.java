@@ -72,6 +72,7 @@ public class UserControllerTest extends TestCase {
             .andExpect(jsonPath("$").hasJsonPath())
             .andExpect(result -> assertEquals(result.getResponse().getContentAsString(),
                 mapper.writeValueAsString(users)));
+        assertTrue(users.get(0).getReadingBooksSet().isEmpty());
 
         verify(userService, times(1)).getAll();
     }

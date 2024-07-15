@@ -52,9 +52,7 @@ public class ReviewServiceTest extends TestCase {
             add(new Review(5, "Perfect"));
             add(new Review(5, "Awesome"));
         }};
-        reviews.forEach(x -> {
-            x.setId(1L);
-        });
+        reviews.forEach(x ->  x.setId(1L));
 
         Mockito.when(reviewRepository.findAllBestReviews()).thenReturn(reviews);
 
