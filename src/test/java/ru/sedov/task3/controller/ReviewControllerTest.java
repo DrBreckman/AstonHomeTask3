@@ -80,8 +80,8 @@ public class ReviewControllerTest extends TestCase {
             .andExpect(jsonPath("$").hasJsonPath())
             .andExpect(result -> assertEquals(result.getResponse().getContentAsString(),
                 mapper.writeValueAsString(reviews)));
-        assertTrue(reviews.get(0).getBookName().isEmpty());
-        assertTrue(reviews.get(0).getUserName().isEmpty());
+        assertNull(reviews.get(0).getBookName());
+        assertNull(reviews.get(0).getUserName());
         verify(reviewService, times(1)).getBestReviews();
     }
 

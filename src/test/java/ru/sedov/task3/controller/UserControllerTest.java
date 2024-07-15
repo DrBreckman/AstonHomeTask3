@@ -72,7 +72,6 @@ public class UserControllerTest extends TestCase {
             .andExpect(jsonPath("$").hasJsonPath())
             .andExpect(result -> assertEquals(result.getResponse().getContentAsString(),
                 mapper.writeValueAsString(users)));
-        assertTrue(users.get(0).getReadingBooksSet().isEmpty());
 
         verify(userService, times(1)).getAll();
     }
@@ -96,6 +95,7 @@ public class UserControllerTest extends TestCase {
             .andExpect(jsonPath("$").hasJsonPath())
             .andExpect(result -> assertEquals(result.getResponse().getContentAsString(),
                 mapper.writeValueAsString(users)));
+        assertNull(users.get(0).getReadingBooksSet());
 
         verify(userService, times(1)).findAllWithGoodAverageMarkReview();
     }
