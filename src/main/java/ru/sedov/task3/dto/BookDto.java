@@ -48,14 +48,4 @@ public class BookDto {
 
         this.readerSet = readerSet;
     }
-
-    @Override
-    public String toString() {
-
-        return "BookDto{" +
-            "name='" + name + '\'' +
-            ", author='" + author + '\'' +
-            ", readerSet=" + readerSet +
-            '}';
-    }
 }

@@ -12,7 +12,6 @@ import java.util.Collections;
 import java.util.List;
 
 @Configuration
-//@EnableWebMvc
 @ComponentScan("ru.sedov.task3")
 public class SpringConfig implements WebMvcConfigurer {
     @Override

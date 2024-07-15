@@ -2,11 +2,9 @@ package ru.sedov.task3.controller;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
-import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 import ru.sedov.task3.dto.BookDto;
 import ru.sedov.task3.service.BookService;
 
@@ -29,9 +27,8 @@ public class BookController {
         return service.getAll();
     }
 
-    @GetMapping("/bookByName")
+    @GetMapping("/byName")
     public BookDto getByName(@RequestBody String name) {
-
 
         return service.getByName(name);
     }
@@ -39,12 +36,5 @@ public class BookController {
     @GetMapping("/allByReader")
     public List<BookDto> getByReaderName(@RequestBody String name) {
         return service.getByReaderName(name);
-    }
-
-
-    @PostMapping("/save")
-    public BookDto saveBook(@RequestBody BookDto book){
-
-        return service.saveBook(book);
     }
 }

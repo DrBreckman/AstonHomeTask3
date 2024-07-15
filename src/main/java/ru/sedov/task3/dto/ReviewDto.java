@@ -13,11 +13,10 @@ public class ReviewDto {
 
     }
 
-    public ReviewDto(Integer mark, String description, String userName) {
+    public ReviewDto(Integer mark, String description) {
 
         this.mark = mark;
         this.description = description;
-        this.userName = userName;
     }
 
     public Integer getMark() {
@@ -58,16 +57,5 @@ public class ReviewDto {
     public void setBookName(String bookName) {
 
         this.bookName = bookName;
-    }
-
-    @Override
-    public String toString() {
-
-        return "ReviewDto{" +
-            "mark=" + mark +
-            ", description='" + description + '\'' +
-            ", userName='" + userName + '\'' +
-            ", bookName='" + bookName + '\'' +
-            '}';
     }
 }

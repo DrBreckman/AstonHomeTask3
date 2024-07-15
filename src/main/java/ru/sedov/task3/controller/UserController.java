@@ -2,12 +2,9 @@ package ru.sedov.task3.controller;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 import ru.sedov.task3.dto.UserDto;
-import ru.sedov.task3.entity.User;
 import ru.sedov.task3.service.UserService;
 
 import java.util.List;
@@ -26,12 +23,12 @@ public class UserController {
     @GetMapping("/all")
     public List<UserDto> getUsers(){
 
-        return service.getUsers();
+        return service.getAll();
     }
 
-    @PostMapping("/save")
-    public UserDto saveUser(@RequestBody UserDto user){
+    @GetMapping("/goodAverage")
+    public List<UserDto> getUsersWithGoodAverageMark() {
 
-        return service.saveUser(user);
+        return service.findAllWithGoodAverageMarkReview();
     }
 }

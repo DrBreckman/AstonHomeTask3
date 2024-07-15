@@ -10,8 +10,8 @@ import jakarta.persistence.ManyToMany;
 import jakarta.persistence.OneToMany;
 import jakarta.persistence.Table;
 
+import java.util.HashSet;
 import java.util.Set;
-import java.util.UUID;
 
 @Entity
 @Table(name = "books")
@@ -24,12 +24,12 @@ public class Book {
     private String author;
 
     @OneToMany(fetch = FetchType.EAGER, mappedBy = "book", cascade = CascadeType.ALL)
-    private Set<Review> reviewSet;
+    private Set<Review> reviewSet = new HashSet<>();
 
     @ManyToMany(fetch = FetchType.EAGER,
                 cascade = CascadeType.ALL,
                 mappedBy = "readingBooks")
-    private Set<User> readingUsers;
+    private Set<User> readingUsers = new HashSet<>();
 
     public Book() {
 

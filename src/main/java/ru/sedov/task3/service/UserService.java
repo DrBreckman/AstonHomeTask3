@@ -3,7 +3,6 @@ package ru.sedov.task3.service;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import ru.sedov.task3.dto.UserDto;
-import ru.sedov.task3.entity.User;
 import ru.sedov.task3.mapper.impl.UserMapper;
 import ru.sedov.task3.repository.UserRepository;
 
@@ -20,15 +19,13 @@ public class UserService {
         this.userRepository = userRepository;
     }
 
-    public List<UserDto> getUsers(){
+    public List<UserDto> getAll() {
 
-        return userRepository.findAll().stream()
-            .map(UserMapper.INSTANCE::sourceToDestination).toList();
+        return UserMapper.INSTANCE.sourceToDestination(userRepository.findAll());
     }
 
-    public UserDto saveUser(UserDto userDto){
+    public List<UserDto> findAllWithGoodAverageMarkReview() {
 
-        return UserMapper.INSTANCE.sourceToDestination(
-            userRepository.save(UserMapper.INSTANCE.destinationToSource(userDto)));
+        return UserMapper.INSTANCE.sourceToDestination(userRepository.findAllWithGoodAverageMarkReview());
     }
 }

@@ -12,8 +12,8 @@ import jakarta.persistence.ManyToMany;
 import jakarta.persistence.OneToMany;
 import jakarta.persistence.Table;
 
+import java.util.HashSet;
 import java.util.Set;
-import java.util.UUID;
 
 @Entity
 @Table(name = "users")
@@ -26,14 +26,14 @@ public class User {
     private String address;
 
     @OneToMany(fetch = FetchType.EAGER, mappedBy = "user", cascade = CascadeType.ALL)
-    private Set<Review> reviewSet;
+    private Set<Review> reviewSet = new HashSet<>();
 
     @ManyToMany(fetch = FetchType.EAGER,
                 cascade = CascadeType.ALL)
     @JoinTable(name = "users_books",
                joinColumns = { @JoinColumn(name = "user_id") },
                inverseJoinColumns = { @JoinColumn(name = "book_id") })
-    private Set<Book> readingBooks;
+    private Set<Book> readingBooks = new HashSet<>();
 
     public User(){
 

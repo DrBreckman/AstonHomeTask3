@@ -8,8 +8,6 @@ import jakarta.persistence.JoinColumn;
 import jakarta.persistence.ManyToOne;
 import jakarta.persistence.Table;
 
-import java.util.UUID;
-
 @Entity
 @Table(name = "reviews")
 public class Review {
@@ -36,14 +34,6 @@ public class Review {
 
         this.mark = mark;
         this.description = description;
-    }
-
-    public Review(Integer mark, String description, User user, Book book) {
-
-        this.mark = mark;
-        this.description = description;
-        this.user = user;
-        this.book = book;
     }
 
     public Long getId() {

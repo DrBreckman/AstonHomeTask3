@@ -1,8 +1,5 @@
 package ru.sedov.task3.dto;
 
-import org.springframework.stereotype.Component;
-import ru.sedov.task3.entity.Review;
-
 import java.util.Set;
 
 public class UserDto {
@@ -11,8 +8,8 @@ public class UserDto {
     private int age;
     private String address;
 
-    private Set<ShortReviewDto> reviewSet;
-    private Set<ShortBookDto> readingBooksSet;
+    private Set<ReviewDto> reviewSet;
+    private Set<BookDto> readingBooksSet;
 
     public UserDto() {
     }
@@ -54,35 +51,23 @@ public class UserDto {
         this.address = address;
     }
 
-    public Set<ShortReviewDto> getReviewSet() {
+    public Set<ReviewDto> getReviewSet() {
 
         return reviewSet;
     }
 
-    public void setReviewSet(Set<ShortReviewDto> reviewSet) {
+    public void setReviewSet(Set<ReviewDto> reviewSet) {
 
         this.reviewSet = reviewSet;
     }
 
-    public Set<ShortBookDto> getReadingBooksSet() {
+    public Set<BookDto> getReadingBooksSet() {
 
         return readingBooksSet;
     }
 
-    public void setReadingBooksSet(Set<ShortBookDto> readingBooksSet) {
+    public void setReadingBooksSet(Set<BookDto> readingBooksSet) {
 
         this.readingBooksSet = readingBooksSet;
-    }
-
-    @Override
-    public String toString() {
-
-        return "UserDto{" +
-            "name='" + name + '\'' +
-            ", age=" + age +
-            ", address='" + address + '\'' +
-            ", reviewSet=" + reviewSet +
-            ", readingBooksSet=" + readingBooksSet +
-            '}';
     }
 }

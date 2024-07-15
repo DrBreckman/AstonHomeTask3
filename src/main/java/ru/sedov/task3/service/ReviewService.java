@@ -3,7 +3,6 @@ package ru.sedov.task3.service;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import ru.sedov.task3.dto.ReviewDto;
-import ru.sedov.task3.entity.Review;
 import ru.sedov.task3.mapper.impl.ReviewMapper;
 import ru.sedov.task3.repository.ReviewRepository;
 
@@ -20,15 +19,18 @@ public class ReviewService {
         this.repository = repository;
     }
 
-    public List<ReviewDto> getReviews() {
+    public List<ReviewDto> getAll() {
 
-        return repository.findAll().stream()
-            .map(ReviewMapper.INSTANCE::sourceToDestination).toList();
+        return ReviewMapper.INSTANCE.sourceToDestination(repository.findAll());
     }
 
-    public ReviewDto saveReview(ReviewDto reviewDto){
+    public List<ReviewDto> getBestReviews() {
 
-        return ReviewMapper.INSTANCE.sourceToDestination(
-            repository.save(ReviewMapper.INSTANCE.destinationToSource(reviewDto)));
+        return ReviewMapper.INSTANCE.sourceToDestination(repository.findAllBestReviews());
+    }
+
+    public List<ReviewDto> getWorstReviews() {
+
+        return ReviewMapper.INSTANCE.sourceToDestination(repository.findAllWorstReviews());
     }
 }

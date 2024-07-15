@@ -21,9 +21,7 @@ public class BookService {
 
     public List<BookDto> getAll() {
 
-        return repository.findAll().stream()
-            .map(BookMapper.INSTANCE::sourceToDestination)
-            .toList();
+        return BookMapper.INSTANCE.sourceToDestination(repository.findAll());
     }
 
     public BookDto getByName(String name) {
@@ -31,13 +29,7 @@ public class BookService {
     }
 
     public List<BookDto> getByReaderName(String name) {
+
         return BookMapper.INSTANCE.sourceToDestination(repository.findAllByReaderName(name));
     }
-
-    public BookDto saveBook(BookDto bookDto){
-
-        return BookMapper.INSTANCE.sourceToDestination(
-            repository.save(BookMapper.INSTANCE.destinationToSource(bookDto)));
-    }
-
 }
