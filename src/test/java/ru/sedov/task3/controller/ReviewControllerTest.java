@@ -81,7 +81,7 @@ public class ReviewControllerTest extends TestCase {
             .andExpect(result -> assertEquals(result.getResponse().getContentAsString(),
                 mapper.writeValueAsString(reviews)));
         assertTrue(reviews.get(0).getBookName().isEmpty());
-        assertTrue(reviews.get(0).getBookName().isEmpty());
+        assertTrue(reviews.get(0).getUserName().isEmpty());
         verify(reviewService, times(1)).getBestReviews();
     }
 
